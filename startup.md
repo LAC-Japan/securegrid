@@ -19,7 +19,7 @@ SecureGRIDアライアンス事務局： ＊＊＊＊
 
 ここでは、基本的なMISPの構築方法についてご説明します。
 尚本資料では、実績のある推奨環境を前提として記載しています。事情によりその他環境での構築を行う場合、MISP本家のreadmeを参考に実施をおねがいします。
-参考：　[MISP本家のインストール情報](https://misp.github.io/MISP/)
+参考：　[MISP本家のインストール情報](https://misp.github.io/MISP/){:target="_blank"}
 
 
 ## 必要環境
@@ -42,7 +42,7 @@ https://localhost
 * 何等かエラーが発生した場合、内容を確認し可能であれば該当のエラーを解消した上で、インストールシェルを再実行してください
 * エラー解消が困難な場合、SecureGRIDアライアンス事務局までお問い合わせください
 
-参考：　完全な情報については [MISP本家](https://misp.github.io/MISP/INSTALL.ubuntu2004/) の情報を参照してください
+参考：　完全な情報については [MISP本家](https://misp.github.io/MISP/INSTALL.ubuntu2004/){:target="_balnk"} の情報を参照してください
 
 
 ## ユーザ作成
