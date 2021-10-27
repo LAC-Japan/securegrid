@@ -3,8 +3,9 @@
 ## 概要
 
 ## MISP構築ガイド
-[スタートアップガイド](/startup.md)
+[SecureGRIDスタートアップガイド](/guides/startup.md)
 
-## MISP投入サンプル
-[AnyrunデータのMISP投入](https://github.com/LAC-Japan/anyrun_to_misp){:target="_blank"}
-[手動作成CSVのMISP投入](https://github.com/LAC-Japan/MISP-CSVImport){:target="_blank"}
+## MISP投入ガイド
+
+[MISP投入ガイド](/guides/misp-import.md)
+
