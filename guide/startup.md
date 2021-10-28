@@ -61,7 +61,7 @@ MISPを利用するにあたってはユーザごとにアカウントを登録�
 
 # MISPへのデータの登録
 
-[MISPデータ投入ガイド](/guide/misp-import.md) を参照してください
+[MISPデータ投入ガイド](misp-import.md) を参照してください
 
 
 # SecureGRIDへのMISP追加
