@@ -28,7 +28,7 @@ pythonを使ったMISPへのイベント登録には、
 ## 今回のサンプルプログラム
 
 今回は、当社が先日公開した
-[ransomwatch](https://www.lac.co.jp/lacwatch/people/20211117_002792.html)
+[ransomwatch](https://www.lac.co.jp/lacwatch/people/20211117_002792.html){:target="_blank"}
 で収集した情報をMISPに格納するという例を元に進めたいと思います。
 
 まず、早速ですが、サンプルデータとプログラムを
