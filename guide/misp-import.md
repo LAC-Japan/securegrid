@@ -58,24 +58,22 @@ pipでインストール可能です。
 
 コードでいうと以下部分をご覧いただくと、全体的な流れが上記のようになっていることが確認できるかと思います。
 
-`
-if __name__ == '__main__':
-
-    # ファイルを読み込み、MISP登録に必要な情報をリストで取得する
-    file_values = parse_file(IMPORT_TARGET_FILE)
-
-    # MISP接続
-    misp = ExpandedPyMISP(MISP_URL, MISP_AUTHKEY, ssl=False, debug=False)
-
-    # ファイルから読み込んだデータを元に１イベント分ずつ処理する
-    for data in file_values:
-
-        # MISPイベント作成
-        event_data = create_misp_event(data)
-        # イベントをMISPに登録
-        misp_event_url = register_misp(misp, event_data)
-        print(f"Event URL: {misp_event_url}")
-`
+    if __name__ == '__main__':
+    
+        # ファイルを読み込み、MISP登録に必要な情報をリストで取得する
+        file_values = parse_file(IMPORT_TARGET_FILE)
+    
+        # MISP接続
+        misp = ExpandedPyMISP(MISP_URL, MISP_AUTHKEY, ssl=False, debug=False)
+    
+        # ファイルから読み込んだデータを元に１イベント分ずつ処理する
+        for data in file_values:
+    
+            # MISPイベント作成
+            event_data = create_misp_event(data)
+            # イベントをMISPに登録
+            misp_event_url = register_misp(misp, event_data)
+            print(f"Event URL: {misp_event_url}")
 
 では、個別の処理の中身について順番に説明していきます。
 
@@ -85,44 +83,41 @@ if __name__ == '__main__':
 今回のメソッドでは「parse_file」部分で処理対象のファイルを読み込み、MISPイベント作成に必要な情報を取得しています。
 コードをみて行きます。
 
-`
-def parse_file(target_file: pathlib.Path)->list:
-    """ ファイルを読み込み、イベント登録に必要な情報を抜き出して辞書のリストで返す """
-
-    result = []
-
-    # ファイルを読み込んで１行１要素でリストに格納
-    file_data = target_file.read_text().split('\n')
-
-    # ヘッダ行判定用
-    header = True
-
-    # １行１イベント相当の情報なので、１行分ずつループ処理して必要な項目を抽出
-    for line in file_data:
-        # ヘッダはスキップする
-        if header:
-            header = False
-            continue
-
-        # 空行はスキップ
-        if line.strip() == '':
-            continue
-
-        # 入力ファイルがTSVなのでタブで分割する
-        columns = line.split("\t")
-
-        # 今回は全カラムをMISP登録に利用するため、抽出して返す
-        result.append({
-            'actor': columns[0],
-            'victim': columns[1],
-            'first_seen': columns[2],
-            'published': columns[3],
-            'url': columns[4]
-        })
-
-    return result
-
-`
+    def parse_file(target_file: pathlib.Path)->list:
+        """ ファイルを読み込み、イベント登録に必要な情報を抜き出して辞書のリストで返す """
+    
+        result = []
+    
+        # ファイルを読み込んで１行１要素でリストに格納
+        file_data = target_file.read_text().split('\n')
+    
+        # ヘッダ行判定用
+        header = True
+    
+        # １行１イベント相当の情報なので、１行分ずつループ処理して必要な項目を抽出
+        for line in file_data:
+            # ヘッダはスキップする
+            if header:
+                header = False
+                continue
+    
+            # 空行はスキップ
+            if line.strip() == '':
+                continue
+    
+            # 入力ファイルがTSVなのでタブで分割する
+            columns = line.split("\t")
+    
+            # 今回は全カラムをMISP登録に利用するため、抽出して返す
+            result.append({
+                'actor': columns[0],
+                'victim': columns[1],
+                'first_seen': columns[2],
+                'published': columns[3],
+                'url': columns[4]
+            })
+    
+        return result
 
 基本的にコメントの通りの処理となっています。
 この部分についてはMISP特有の処理は特に存在せず、pythonによるファイル読み込みとTSV（タブ区切りファイル）のパースを行っています。
@@ -137,60 +132,57 @@ def parse_file(target_file: pathlib.Path)->list:
 
 コードを見てみます。
 
-`
-
-def create_misp_event(target_values: dict)->MISPEvent:
-    """MISP登録用のイベントを作成する"""
-
-    # データを格納するイベント作成
-    misp_event = MISPEvent()
-
-    # イベントのタイトル
-    misp_event.info = f"[ransomwatch] {target_values['actor']} - victim:{target_values['victim']}({target_values['first_seen']})"
-
-    # イベント日付としてfirst seenの日付をセット
-    misp_event.date = target_values['first_seen'][:10]
-
-    # イベントタグ追加
-    misp_event.add_tag('ransomwatch')
-    misp_event.add_tag(f"actor:{target_values['actor']}")
-
-    # アトリビュート追加
-    # 被害組織情報を追加
-    misp_event.add_attribute(
-        value = target_values['victim'],
-        category = "External analysis",
-        type = "comment",
-        comment = "victim"
-    )
-
-    # first seen
-    misp_event.add_attribute(
-        value = target_values['first_seen'],
-        category = "Other",
-        type = "datetime",
-        comment = "First Seen"
-    )
-
-    # 公開日(published)は存在すれば追加
-    if target_values['published']  != "N/A":
+    def create_misp_event(target_values: dict)->MISPEvent:
+        """MISP登録用のイベントを作成する"""
+    
+        # データを格納するイベント作成
+        misp_event = MISPEvent()
+    
+        # イベントのタイトル
+        misp_event.info = f"[ransomwatch] {target_values['actor']} - victim:{target_values['victim']}({target_values['first_seen']})"
+    
+        # イベント日付としてfirst seenの日付をセット
+        misp_event.date = target_values['first_seen'][:10]
+    
+        # イベントタグ追加
+        misp_event.add_tag('ransomwatch')
+        misp_event.add_tag(f"actor:{target_values['actor']}")
+    
+        # アトリビュート追加
+        # 被害組織情報を追加
         misp_event.add_attribute(
-            value = target_values['published'],
+            value = target_values['victim'],
+            category = "External analysis",
+            type = "comment",
+            comment = "victim"
+        )
+    
+        # first seen
+        misp_event.add_attribute(
+            value = target_values['first_seen'],
             category = "Other",
             type = "datetime",
-            comment = "Published Date"
+            comment = "First Seen"
         )
-
-    # 情報ページ
-    misp_event.add_attribute(
-        value = target_values['url'],
-        category = "Network activity",
-        type = "url",
-        comment = "Leak site"
-    )
-
-    return misp_event
-`
+    
+        # 公開日(published)は存在すれば追加
+        if target_values['published']  != "N/A":
+            misp_event.add_attribute(
+                value = target_values['published'],
+                category = "Other",
+                type = "datetime",
+                comment = "Published Date"
+            )
+    
+        # 情報ページ
+        misp_event.add_attribute(
+            value = target_values['url'],
+            category = "Network activity",
+            type = "url",
+            comment = "Leak site"
+        )
+    
+        return misp_event
 
 pymispで用意されているMISPEventというクラスをインスタンス化し、ここに必要な情報尾設定していきます。
 今回行っている内容としてはコード上のコメントをご確認いただければと思いますが、基本的なMISPイベントを作成するためには最低限以下情報を設定します。
@@ -210,18 +202,14 @@ pymispで用意されているMISPEventというクラスをインスタンス�
 この部分はpymispを使うと非常に簡単に実現できます。
 コードをみてみます。
 
-`
-
-def register_misp(misp:ExpandedPyMISP, misp_event:MISPEvent) -> str:
-    """MISPイベントデータを受け取り、イベントURLを返す"""
-
-    # MISPにイベント登録
-    event_data = misp.add_event(misp_event)
-
-    # イベントURLを返す
-    return f"{MISP_URL}/events/view/{event_data['Event']['id']}"
-
-`
+    def register_misp(misp:ExpandedPyMISP, misp_event:MISPEvent) -> str:
+        """MISPイベントデータを受け取り、イベントURLを返す"""
+    
+        # MISPにイベント登録
+        event_data = misp.add_event(misp_event)
+    
+        # イベントURLを返す
+        return f"{MISP_URL}/events/view/{event_data['Event']['id']}"
 
 上記の通り、ExpandedPyMISPクラスインスタンスのadd_eventメソッドに、前述のcreate_misp_eventで作成したデータを渡すのみで処理は完了です。
 実運用では、この部分はエラーが出やすい（MISPへ実際にネットワーク接続するため、ネットワーク関連のエラーやMISP側の不調に起因するエラーが出ることがある）ため、try～exceptで例外処理したり、ループ処理でリトライ処理を実装することが多いです。今回は、このあたりは一般的なpythonプログラミングのテクニックの話になるので、サンプルには入れていません。
