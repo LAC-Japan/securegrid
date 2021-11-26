@@ -1,3 +1,1 @@
 theme: jekyll-theme-modernist
-title: { { page.title } }
-description: { { page.description } }

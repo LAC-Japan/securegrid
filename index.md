@@ -1,5 +1,4 @@
-title: SecureGRIDトップページ
-description: SecureGRID関連情報のトップページです
+<title>SecureGRIDトップページ</title>
 
 # SecureGRID
 
