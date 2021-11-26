@@ -1,4 +1,5 @@
-<title>SecureGRIDトップページ</title>
+layout: default
+title: SecureGRIDトップページ
 
 # SecureGRID
 
