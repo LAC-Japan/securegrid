@@ -1,6 +1,3 @@
-layout: default
-title: SecureGRIDトップページ
-
 # SecureGRID
 
 ## 概要

@@ -1,6 +1,3 @@
-title: SecureGRIDスタートアップガイド
-description: SecureGRIDアライアンス参加に際して、MISP構築等初めに行う必要のある作業のガイドです。
-
 # 概要
 
 本資料は、SecureGRIDアライアンスへの加盟に際して、必要となる初期作業をまとめたものです。
