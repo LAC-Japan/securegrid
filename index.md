@@ -1,3 +1,6 @@
+title: SecureGRIDトップページ
+description: SecureGRID関連情報のトップページです
+
 # SecureGRID
 
 ## 概要
