@@ -35,7 +35,7 @@
 * 以下コマンドを実行し、インストールシェルを開始します
 	* `wget -O /tmp/INSTALL.sh https://raw.githubusercontent.com/MISP/MISP/2.4/INSTALL/INSTALL.sh`
 	* `bash /tmp/INSTALL.sh`
-	* `bash /tmp/INSTALL.sh -c`
+	* `bash /tmp/INSTALL.sh -c -M`
 * 画面の指示に従って入力を進めます
 * 問題なく完了した場合、以下でアクセス可能になっていますので確認してください(curlやwget・ブラウザ等）
 https://localhost
