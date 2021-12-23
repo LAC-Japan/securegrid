@@ -2,7 +2,7 @@
 title: MISP運用ガイド
 ---
 
-[TOP](/)
+[TOP](/securegrid/)
 
 # 概要
 

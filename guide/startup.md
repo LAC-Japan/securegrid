@@ -2,7 +2,7 @@
 title: SecureGRIDスタートアップガイド
 ---
 
-[TOP](/)
+[TOP](/securegrid/)
 
 # 概要
 

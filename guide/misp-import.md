@@ -2,7 +2,7 @@
 title: MISP投入ガイド
 ---
 
-[TOP](/)
+[TOP](/securegrid/)
 
 # 概要
 
