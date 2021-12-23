@@ -8,11 +8,10 @@ title: SecureGRIDトップページ
 
 [SecureGRIDについて(ホームページ側の広報ページができたらセット)](https://www.lac.co.jp/)
 
-## MISP構築ガイド
+## 各種ガイド
+
 [SecureGRIDスタートアップガイド](/guide/startup.md)
-
-
-## MISP投入ガイド
 
 [MISP投入ガイド](/guide/misp-import.md)
 
+[MISP運用ガイド](/guide/misp-operation.md)
