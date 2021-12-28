@@ -2,13 +2,17 @@
 title: SecureGRIDトップページ
 ---
 
-# SecureGRID
 
-## 概要
+# 概要
 
-[SecureGRIDについて(ホームページ側の広報ページができたらセット)](https://www.lac.co.jp/)
+[SecureGRIDアライアンス](https://www.lac.co.jp/security/securegrid.html)
+に参加いただくにあたって、ご参考にしていただけるような情報を公開していきます。
+ご不明点につきましては、
+[こちらのお問い合わせフォーム](https://krs.bz/lac/m/securegrid?_ga=2.137599600.1173151998.1640651755-16565361.1638256099&_fsi=8H1ssyw9)
+よりSecureGRIDアライアンス事務局にお気軽にご連絡ください。
 
-## 各種ガイド
+
+# 各種ガイド
 
 [SecureGRIDスタートアップガイド](/guide/startup.md)
 
