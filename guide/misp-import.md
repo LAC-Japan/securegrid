@@ -56,13 +56,13 @@ MISPにアトリビュートをまとめてインポートするためのツー�
 ## CSVImportツール
 
 当研究所で以前に作成し公開したCSVデータをもとにMISP登録を行うための
-[ツール](https://github.com/LAC-Japan/MISP-CSVImport)
+[ツール](https://github.com/LAC-Japan/MISP-CSVImport){:target="_blank"}
 も存在します。
 
 こちらを活用いただくことで、エクセル等で管理されている多数のデータを、一括して読み込み、複数イベントに登録したりタグ付けしたり、ということが可能です。
 
 使用方法については
-[ツールのreadme](https://github.com/LAC-Japan/MISP-CSVImport/blob/master/readme_jp.md)
+[ツールのreadme](https://github.com/LAC-Japan/MISP-CSVImport/blob/master/readme_jp.md){:target="_blank"}
 をご参照ください。
 
 
@@ -77,5 +77,5 @@ MISPのWeb画面にログインした後`Automation`を選択することで、�
 今回は当研究所で利用実績の豊富なpython用のライブラリ
 [pymisp](https://github.com/MISP/PyMISP){:target="_blank"}
 を使ったスクリプト作成について、具体的なコードを含めて
-[こちらのガイド](/guide/misp-import-script.md)
+[こちらのガイド](/securegrid/guide/misp-import-script.md)
 にて解説しています。
