@@ -77,5 +77,5 @@ MISPのWeb画面にログインした後`Automation`を選択することで、�
 今回は当研究所で利用実績の豊富なpython用のライブラリ
 [pymisp](https://github.com/MISP/PyMISP){:target="_blank"}
 を使ったスクリプト作成について、具体的なコードを含めて
-[こちらのガイド](/securegrid/guide/misp-import-script.md)
+[こちらのガイド](/securegrid/guide/misp-import-script)
 にて解説しています。
