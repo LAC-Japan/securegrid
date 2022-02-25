@@ -111,8 +111,8 @@ MISPを利用するにあたってはユーザごとにアカウントを登録�
 [前述の手順](#ユーザ作成)
 をご参照ください。
 
-* Email: 任意の文字列。メールは利用しないので実在しないアドレスで問題ありません
-* Organisation: 任意の値。MISP上のイベントの一部をSecureGRID向けに公開し一部は公開したくないという場合は、イベントのdistributionと合わせて検討が必要となります。そのようなユースケースがなければ値はなんでも問題ありません
+* Email: securegrid@任意のドメイン。このメールアドレスにSecureGRIDアライアンスからメールをお送りすることはないため、実在しないアドレスで問題ありません
+* Organisation: securegrid。MISPのイベントは原則securegridではないデータの所有者を表すorganisationに設定してください。その上で、SecureGRIDアライアンスにデータ公開するイベント・アトリビュートについてはdistributionを「this community」に設定してください。逆にsecuregridへは公開したくないデータについてはdistributionを[organisation only」としていただくことで今回作成いただくユーザからの検索ではヒットしなくなります
 * Role: readonly。SecureGRIDポータルではデータの検索のみ利用するため、読み取りのみ許可いただければ問題ありません
 
 上記条件で作成したユーザのAuthkeyをSecureGRIDアライアンス事務局までお知らせください。
