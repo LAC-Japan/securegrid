@@ -1,5 +1,5 @@
 ---
-title: SecureGRIDトップページ
+title: SecureGRIDアライアンスユーザガイド
 ---
 
 
