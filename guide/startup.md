@@ -58,12 +58,62 @@ MISP構築環境の検討にお役立てください。
 	* `bash /tmp/INSTALL.sh`
 	* `bash /tmp/INSTALL.sh -c -M`
 * 画面の指示に従って入力を進めます
+	* 処理中にmispユーザを新規作成するか尋ねられます。   
+		Noを選択した場合、カレントユーザがwww-dataとstaffグループに追加されます。
+		どちらを選択しても、MISPの動作には影響ありません。
+		> id: `misp': no such user  
+		> There is NO user called 'misp' create a user 'misp' (y) or continue as hoge (n)? (y/n)
+	* 処理中にDBの初期パスワードが自動生成されます。  
+		こちらはMariaDBを開く際に必要です。
+		> Admin (root) DB Password: hogehoge  
+		> User  (misp) DB Password: hogehoge  
 * 問題なく完了した場合、以下でアクセス可能になっていますので確認してください(curlやwget・ブラウザ等）
-https://localhost
+	https://localhost  
+	ブラウザからは以下の情報でログインできます。
+	> User: admin@admin.test  
+	> Password: admin
 * 何等かエラーが発生した場合、内容を確認し可能であれば該当のエラーを解消した上で、インストールシェルを再実行してください
 * エラー解消が困難な場合、SecureGRIDアライアンス事務局までお問い合わせください
 
 参考：　完全な情報については [MISP本家](https://misp.github.io/MISP/INSTALL.ubuntu2004/){:target="_balnk"} の情報を参照してください
+
+
+## インストール後の設定
+以降はMISPのV2.4.157の手順を記載します。最新は本家の情報をご確認ください。
+* DBパスワード設定  
+	まずMariaDBコンソールを開き、rootおよびmispユーザのパスワードを初期値から変更します。  
+	続いて、下記ファイルのpasswordの値も変更が必要です。  
+	/var/www/MISP/app/Config/database.php
+* ページタイトル及びURL設定  
+	/var/www/MISP/app/Config/config.php  
+	について。ページタイトルはtitle_text、URLはbase_urlで変更できます。  
+	base_urlには実際にWebでアクセス可能なIP、もしくはドメインのURLを設定します。
+
+以下のメモリ設定については、他用途に使っていない（リソースを全部MISPに割り当てて良い）サーバの前提で記載しています。  
+DBとApacheに対し、おおよそ半分ずつのメモリを割り当てられるよう調整していますが、最適な設定値は各環境で異なります。  
+実際の設定はそれぞれのマニュアル等をご確認いただき、各自で行ってください。
+* DB設定変更  
+	/etc/mysql/mariadb.conf.d/50-server.cnf  
+	について。当社で運用しているMISPでの目安を記載します。
+	* innodb_buffer_pool_size←実メモリの半分程度
+	* innodb_log_file_size←実メモリの1/8程度
+	* max_heap_table_size←実メモリの1/16程度
+	* tmp_table_size←実メモリの1/16程度  
+	上記の全行を「Read the manual for more InnoDB related options. There are many!」の下に挿入します（デフォルトでは項目が存在しません。
+* PHP設定変更  
+	/etc/php/xxx/apache2/php.ini  
+	（xxxはご使用のバージョンです。ご使用のバージョンは/etc/apache2/mods-enabled/内をご確認ください）  
+	について、当社で運用しているMISPでの目安を記載します。
+	* max_execution_time = 3600
+	* max_input_time = -1
+	* memory_limit←実メモリの1/8程度（各セッションでの値のため、実際Apacheが使用するメモリはこれより大きくなります）
+	* log_errors_max_len = 8192
+	* post_max_size = 1024M
+	* default_socket_timeout = 600
+
+各設定項目の変更後、DBとApacheを再起動します。  
+`sudo systemctl restart mysql`  
+`sudo systemctl restart apache2`
 
 
 ## ユーザ作成
