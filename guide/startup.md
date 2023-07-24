@@ -31,7 +31,7 @@ title: SecureGRIDスタートアップガイド
 ## 必要環境
 
 * OS: Linux(本資料ではUbuntu20.04 LTSを前提とします)
-* メモリ：　8GB以上
+* メモリ：　16GB以上
 * プロセッサ：　２コア以上
 * ディスクサイズ：　３０GB以上（投入予定データに依存）
 * アクセス可能なグローバルIP（DNS登録は任意）
@@ -66,7 +66,7 @@ MISP構築環境の検討にお役立てください。
 	* 処理中にDBの初期パスワードが自動生成されます。  
 		こちらはMariaDBを開く際に必要です。
 		> Admin (root) DB Password: hogehoge  
-		> User  (misp) DB Password: hogehoge  
+		> User ?(misp) DB Password: hogehoge  
 * 問題なく完了した場合、以下でアクセス可能になっていますので確認してください(curlやwget・ブラウザ等）
 	https://localhost  
 	ブラウザからは以下の情報でログインできます。
