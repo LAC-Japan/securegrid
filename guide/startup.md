@@ -75,7 +75,7 @@ MISP構築環境の検討にお役立てください。
 * 何等かエラーが発生した場合、内容を確認し可能であれば該当のエラーを解消した上で、インストールシェルを再実行してください
 * エラー解消が困難な場合、SecureGRIDアライアンス事務局までお問い合わせください
 
-参考：　完全な情報については [MISP本家](https://misp.github.io/MISP/INSTALL.ubuntu2004/){:target="_balnk"} の情報を参照してください
+参考：　完全な情報については [MISP本家](https://misp.github.io/MISP/INSTALL.ubuntu2004){:target="_balnk"} の情報を参照してください
 
 
 ## インストール後の設定
